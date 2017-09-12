@@ -1,6 +1,8 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "graphics/graphics.h"
+#include "graphics/register_sprites.h"
 
 int win_w = 600;
 int win_h = 800;
@@ -15,6 +17,7 @@ void processInput(GLFWwindow* window){
 	}
 }
 
+
 int main(int argc, char** argv){
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -23,6 +26,8 @@ int main(int argc, char** argv){
 	#ifdef __APPLE__
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // MAC OSX specific settings
 	#endif
+
+	fun();
 
 	//Initialize GLFW window
 	GLFWwindow* window = glfwCreateWindow(win_w, win_h, "Gnoll Raider", NULL, NULL);
