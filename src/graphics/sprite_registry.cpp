@@ -2,9 +2,10 @@
 #include <vector>
 #include "sprite.h"
 
+
 Sprite sprites[1];
 
-void fun(){
+void register_sprites(){
 	std::vector<Image> images;
 
 	images.clear();

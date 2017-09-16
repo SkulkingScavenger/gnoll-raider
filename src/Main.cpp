@@ -2,7 +2,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "graphics/graphics.h"
-#include "graphics/register_sprites.h"
+#include "graphics/sprite_registry.h"
+#include "game.h"
+
 
 int win_w = 600;
 int win_h = 800;
@@ -17,6 +19,10 @@ void processInput(GLFWwindow* window){
 	}
 }
 
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+
+Game game(win_w,win_h);
+
 
 int main(int argc, char** argv){
 	glfwInit();
@@ -27,7 +33,7 @@ int main(int argc, char** argv){
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // MAC OSX specific settings
 	#endif
 
-	fun();
+	register_sprites();
 
 	//Initialize GLFW window
 	GLFWwindow* window = glfwCreateWindow(win_w, win_h, "Gnoll Raider", NULL, NULL);
@@ -43,19 +49,36 @@ int main(int argc, char** argv){
 		return -1;
 	}
 
+	//Initialize Game
+	game.init();
+	game.state = GAME_ACTIVE;
+
+	// DeltaTime variables
+	GLfloat delta_time = 0.0f;
+	GLfloat frame_previous = 0.0f;
+	GLfloat frame_current = 0.0f;
+
 	//Main Loop
 	while (!glfwWindowShouldClose(window))
 	{
+		//get delta time
+		frame_current = glfwGetTime();
+		delta_time = frame_current - frame_previous;
+		frame_previous = frame_current;
+
 		//input
-		processInput(window);
+		game.process_input(delta_time);
+
+		//update
+		game.update(delta_time);
 
 		//draw
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
+		game.draw();
 
 		//manage buffers and call events
 		glfwSwapBuffers(window);
-		glfwPollEvents();
 	}
 
 	glfwTerminate();

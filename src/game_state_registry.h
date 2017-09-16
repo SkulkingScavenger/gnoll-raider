@@ -1,0 +1,8 @@
+#ifndef REGISTRY_GAMESTATE_
+#define REGISTRY_GAMESTATE_
+enum Game_state {
+	GAME_ACTIVE,
+	GAME_MENU,
+	GAME_OVER
+};
+#endif

@@ -1,6 +1,6 @@
 #include <GLFW/glfw3.h>
 #include "sprite.h"
-#include "register_sprites.h"
+#include "sprite_registry.h"
 #include "sprite_enum.h"
 
 void draw_sprite(sprite_t sprite_index, int image_index, int x, int y){
