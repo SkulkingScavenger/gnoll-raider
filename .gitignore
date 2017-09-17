@@ -2,7 +2,7 @@
 *.user
 *.sdf
 *.ncb
-*.vcxproj*
+*.vcxproj.*
 *.opensdf
 Debug/
 gnoll_raider/Debug

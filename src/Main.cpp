@@ -1,13 +1,16 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "graphics/graphics.h"
-#include "graphics/sprite_registry.h"
+
 #include "game.h"
+#include "resource_manager.h"
 
 
-int win_w = 600;
-int win_h = 800;
+int win_w = 512;
+int win_h = 480;
+
+Game game(win_w, win_h);
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height){
 	glViewport(0, 0, width, height);
@@ -19,9 +22,20 @@ void processInput(GLFWwindow* window){
 	}
 }
 
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
+{
+	// When a user presses the escape key, we set the WindowShouldClose property to true, closing the application
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, GL_TRUE);
+	if (key >= 0 && key < 1024)
+	{
+		if (action == GLFW_PRESS)
+			game.keys[key] = GL_TRUE;
+		else if (action == GLFW_RELEASE)
+			game.keys[key] = GL_FALSE;
+	}
+}
 
-Game game(win_w,win_h);
 
 
 int main(int argc, char** argv){
@@ -33,8 +47,6 @@ int main(int argc, char** argv){
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // MAC OSX specific settings
 	#endif
 
-	register_sprites();
-
 	//Initialize GLFW window
 	GLFWwindow* window = glfwCreateWindow(win_w, win_h, "Gnoll Raider", NULL, NULL);
 	if (window == NULL){
@@ -42,12 +54,21 @@ int main(int argc, char** argv){
 		return -1;
 	}
 	glfwMakeContextCurrent(window);
+
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 	//Load all openGL function pointers via GLAD
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
 		return -1;
 	}
+
+	glfwSetKeyCallback(window, key_callback);
+
+	// OpenGL configuration
+	glViewport(0, 0, win_w, win_h);
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//Initialize Game
 	game.init();
@@ -67,10 +88,10 @@ int main(int argc, char** argv){
 		frame_previous = frame_current;
 
 		//input
-		game.process_input(delta_time);
+		//game.process_input(delta_time);
 
 		//update
-		game.update(delta_time);
+		//game.update(delta_time);
 
 		//draw
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -79,6 +100,7 @@ int main(int argc, char** argv){
 
 		//manage buffers and call events
 		glfwSwapBuffers(window);
+		glfwPollEvents();
 	}
 
 	glfwTerminate();
