@@ -84,6 +84,7 @@
     <ClInclude Include="lib\includes\libpng12\pngconf.h" />
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\game_state_registry.h" />
+    <ClInclude Include="src\graphics\draw_functions.h" />
     <ClInclude Include="src\graphics\graphics.h" />
     <ClInclude Include="src\obj\object.h" />
     <ClInclude Include="src\resource_manager.h" />
@@ -93,6 +94,7 @@
     <ClInclude Include="src\graphics\sprite_enum.h" />
     <ClInclude Include="src\graphics\Sprite_renderer.h" />
     <ClInclude Include="src\graphics\texture.h" />
+    <ClInclude Include="src\utility\dynamic_array.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="shaders\*">

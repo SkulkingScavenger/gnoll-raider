@@ -13,12 +13,19 @@
 
 #include "graphics/texture.h"
 #include "graphics/shader.h"
+#include "graphics/sprite.h"
+#include "utility/dynamic_array.h"
 
 static std::map<std::string, Shader> shaders;
 static std::map<std::string, Texture> textures;
 
 class Resource_manager{
 public:
+
+	static Sprite get_sprite(){
+	
+			
+	}
 	
 
 	static Shader load_shader(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile, std::string name){
