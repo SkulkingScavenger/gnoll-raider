@@ -4,6 +4,7 @@
 
 #include "game.h"
 #include "resource_manager.h"
+#include "input_manager.h"
 
 
 int win_w = 512;

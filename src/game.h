@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 #include "game_state_registry.h"
 #include "resource_manager.h"
+#include "input_manager.h"
 #include "graphics/sprite_renderer.h"
 #include <glm/glm.hpp>
 #include <vector>
@@ -41,7 +42,9 @@ class Game {
 
 		void process_input(GLfloat delta_time){}
 
-		void update(GLfloat delta_time){}
+		void update(GLfloat delta_time){
+			Input_manager::update();
+		}
 
 		void draw(){
 			unsigned int l = object_registry.size();

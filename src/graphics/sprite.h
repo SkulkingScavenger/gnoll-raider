@@ -3,6 +3,8 @@
 
 #include <GLFW/glfw3.h>
 #include <vector>
+#include "texture.h"
+
 
 class Image {
 public:
@@ -20,7 +22,7 @@ public:
 	int height;
 	int origin_x = 0;
 	int origin_y = 0;
-	std::vector<Image, std::allocator<Image>> frames;
+	Texture* frames;
 
 	Sprite(){
 		frame_count = 0;
@@ -30,7 +32,7 @@ public:
 		origin_y = 0;
 	}
 
-	Sprite(int frame_count, int w, int h, std::vector<Image> images, int x, int y){
+	Sprite(int frame_count, int w, int h, Texture* images, int x, int y){
 		width = w;
 		height = h;
 		origin_x = x;

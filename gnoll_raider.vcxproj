@@ -75,8 +75,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lib\libraries\glad.c" />
-    <ClCompile Include="src\graphics\graphics.cpp" />
-    <ClCompile Include="src\graphics\sprite_registry.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -85,13 +83,12 @@
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\game_state_registry.h" />
     <ClInclude Include="src\graphics\draw_functions.h" />
-    <ClInclude Include="src\graphics\graphics.h" />
+    <ClInclude Include="src\input_manager.h" />
     <ClInclude Include="src\obj\object.h" />
     <ClInclude Include="src\resource_manager.h" />
     <ClInclude Include="src\graphics\shader.h" />
-    <ClInclude Include="src\graphics\sprite_registry.h" />
     <ClInclude Include="src\graphics\sprite.h" />
-    <ClInclude Include="src\graphics\sprite_enum.h" />
+    <ClInclude Include="src\graphics\sprite_registry.h" />
     <ClInclude Include="src\graphics\Sprite_renderer.h" />
     <ClInclude Include="src\graphics\texture.h" />
     <ClInclude Include="src\utility\dynamic_array.h" />

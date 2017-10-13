@@ -1,6 +1,8 @@
-#ifndef REGISTRY_SPRITES_H_
-#define REGISTRY_SPRITES_H_
+#ifndef SPRITE_REGISTRY_H_
+#define SPRITE_REGISTRY_H_
 #include "sprite.h"
-extern Sprite sprites[1];
-void register_sprites();
+
+Sprite sprites[1];
+enum sprite_t { spr_kikirak };
+
 #endif

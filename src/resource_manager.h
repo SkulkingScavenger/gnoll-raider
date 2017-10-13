@@ -18,13 +18,22 @@
 
 static std::map<std::string, Shader> shaders;
 static std::map<std::string, Texture> textures;
-
+static dynamic_array_spriteptr* sprite_array;
 class Resource_manager{
 public:
+	static void load_sprites(unsigned int sprite_count){
+		sprite_array = new dynamic_array_spriteptr(sprite_count);
+		for (int i = 0; i < sprite_count; i++){
+			Texture tex = load_texture("assets/sprites/gnoll.png", GL_TRUE, "gnoll");
+			Sprite* spr = new Sprite(1, tex.width, tex.height, &tex,0,0);
+			sprite_array->insert_element_at(i, spr);
+		}
+	}
 
-	static Sprite get_sprite(){
-	
-			
+	static Sprite* get_sprite(unsigned int sprite_index){
+		Sprite* temp;
+		temp = sprite_array->get_element(sprite_index);
+		return temp;
 	}
 	
 
