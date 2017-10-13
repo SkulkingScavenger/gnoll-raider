@@ -35,10 +35,10 @@ int left_key = GLFW_KEY_A;
 int down_key = GLFW_KEY_S;
 int slot_key[4] = { GLFW_KEY_O, GLFW_KEY_P, GLFW_KEY_LEFT_BRACKET, GLFW_KEY_RIGHT_BRACKET };
 
-class Input_manager{
-	std::vector<int> input_list;
-	std::string input_string;
-	void update(GLFWwindow* window){
+static class Input_manager{
+	static std::vector<int> input_list;
+	static std::string input_string;
+	static void update(GLFWwindow* window){
 		confirm_btn = false;
 		cancel_btn = false;
 		start_btn = false;
@@ -72,9 +72,12 @@ class Input_manager{
 			}
 		}
 
+		if (confirm_btn){ std::cout << "confirm" << std::endl; }
+		if (cancel_btn){ std::cout << "confirm" << std::endl; }
+
 	}
 
-	void init(){
+	static void init(){
 		std::fstream file;
 		file.open("keyboard_config.txt");
 		if (file.is_open()){
@@ -116,7 +119,7 @@ class Input_manager{
 		}
 	}
 
-	void init_default(){
+	static void init_default(){
 		confirm_key = GLFW_KEY_SPACE;
 		cancel_key = GLFW_KEY_RIGHT_ALT;
 		start_key = GLFW_KEY_ENTER;
@@ -133,7 +136,7 @@ class Input_manager{
 		slot_key[3] = GLFW_KEY_RIGHT_BRACKET;
 	}
 
-	void push_to_input_string(int key, int scancode){
+	static void push_to_input_string(int key, int scancode){
 		if (key == GLFW_KEY_UNKNOWN){
 			//temp_key = scancode;
 		}else if (key == 32){
